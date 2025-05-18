@@ -1,0 +1,23 @@
+name: Build
+
+on: [pull_request, push]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: "ChibiOS"
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+      - uses: carlosperate/arm-none-eabi-gcc-action@v1
+      - run: ./configure.sh
+      - run: make -j4
+      - uses: actions/upload-artifact@v6
+        with:
+          name: ChibiOS
+          path: build/ch.*
