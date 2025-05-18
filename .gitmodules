@@ -1,0 +1,6 @@
+[submodule "ChibiOS"]
+	path = ChibiOS
+	url = https://github.com/ChibiOS/ChibiOS
+[submodule "Sleipnir"]
+	path = Sleipnir
+	url = https://github.com/SleipnirGroup/Sleipnir
